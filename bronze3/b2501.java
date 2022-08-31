@@ -18,7 +18,12 @@ public class b2501 {
             if(N%i==0) {
                 list.add(i);
             }
+        }
 
+        if(list.size()>=K) {
+            System.out.println(list.get(K-1));
+        } else {
+            System.out.println("0");
         }
 
     }
