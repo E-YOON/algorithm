@@ -7,7 +7,6 @@ public class b3059 {
         
         for(int i=0; i<T; i++) {
             String S = scan.next();
-            System.out.println(S);
             int sum = 0;
 
             for(int j=65; j<91; j++) {
@@ -20,6 +19,5 @@ public class b3059 {
 
         scan.close();
 
-        //~ing 
     }
 }
