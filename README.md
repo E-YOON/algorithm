@@ -6,7 +6,7 @@
 
 ---
 ## 💻 Beakjoon
-🥉<a href="https://github.com/E-YOON/algorithm/tree/main/BAEKJOON/BRONZE">Bronze</a>
+### 🥉<a href="https://github.com/E-YOON/algorithm/tree/main/BAEKJOON/BRONZE">Bronze</a>
 
 
 
