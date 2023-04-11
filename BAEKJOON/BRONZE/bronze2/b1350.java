@@ -7,7 +7,7 @@ public class b1350 {
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
-        int cnt = 0;
+        long cnt = 0;
         StringTokenizer st = new StringTokenizer(br.readLine());
         long cluster = Long.parseLong(br.readLine());
 
