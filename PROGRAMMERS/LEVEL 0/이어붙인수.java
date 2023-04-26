@@ -1,0 +1,14 @@
+public class 이어붙인수 {
+    public int solution(int[] num_list) {
+        String odd = "";
+        String even = "";
+        for(int i=0; i<num_list.length; i++) {
+            if(num_list[i]%2 != 0) {
+                odd += String.valueOf(num_list[i]);
+            } else if(num_list[i]%2 == 0) {
+                even += String.valueOf(num_list[i]);
+            }
+        }
+        return Integer.parseInt(odd) + Integer.parseInt(even);
+    }
+}
