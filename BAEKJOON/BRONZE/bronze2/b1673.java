@@ -20,14 +20,15 @@ public class b1673 {
             int n = Integer.parseInt(st.nextToken());
             int k = Integer.parseInt(st.nextToken());
 
-            int chicken = 0;
-            chicken += n;
-            while(n >= k) {
-                n = n/k;
-                chicken += n;
+            int chicken = n;
+            int coupon = 0;
+
+            while(chicken >= k) {
+                coupon += chicken/k;
+                chicken = chicken/k + chicken%k;
             }
 
-            System.out.println(chicken);
+            System.out.println(n + coupon);
         }
 
     }
