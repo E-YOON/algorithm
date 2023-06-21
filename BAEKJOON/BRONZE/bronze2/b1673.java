@@ -1,4 +1,4 @@
-// 치킨 쿠폰 ~ing
+// 치킨 쿠폰
 
 import java.io.BufferedReader;
 import java.io.IOException;
