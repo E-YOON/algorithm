@@ -1,5 +1,5 @@
 import java.util.Stack;
-// ~ing
+
 public class 괄호회전하기 {
     public int solution(String s) {
         int answer = 0;
