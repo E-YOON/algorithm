@@ -74,7 +74,7 @@ public class s12891 {
                     checkCount++;
                 break;
 
-            case 'P':
+            case 'T':
                 nowArr[3]++;
                 if(nowArr[3] == checkArr[3])
                     checkCount++;
@@ -103,7 +103,7 @@ public class s12891 {
                 nowArr[2]--;
                 break;
 
-            case 'P':
+            case 'T':
                 if(nowArr[3] == checkArr[3])
                     checkCount--; 
                 nowArr[3]--;
