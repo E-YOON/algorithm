@@ -1,20 +1,36 @@
 // 소트인사이드
 
-import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.Scanner;
 
 public class s1427 {
     public static void main(String[] args) throws IOException {
-        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        String[] N = br.readLine().split("");
-        int[] arr = Arrays.asList(N).stream().mapToInt(Integer::parseInt).toArray();
-        Integer[] arr2 = Arrays.stream(arr).boxed().toArray(Integer[]::new);
-        Arrays.sort(arr2, Collections.reverseOrder());
-        for(int i : arr2) {
-            System.out.print(i);
+        Scanner scan = new Scanner(System.in);
+        String str = scan.next();
+        int[] arr = new int[str.length()];
+        for(int i=0; i<str.length(); i++) {
+            arr[i] = Integer.parseInt(str.substring(i, i+1));
         }
+
+        for(int i=0; i<str.length(); i++) {
+            int max = i;
+            for(int j=i+1; j<str.length(); j++) {
+                if(arr[j] > arr[max]) {
+                    max = j;
+                }
+
+                if(arr[i] < arr[max]) {
+                    int temp = arr[i];
+                    arr[i] = arr[max];
+                    arr[max] = temp;
+                }
+            }
+        }
+
+        for(int i=0; i<str.length(); i++) {
+            System.out.print(arr[i]);
+        }
+
+        scan.close();
     }
 }
