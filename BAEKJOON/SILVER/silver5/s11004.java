@@ -1,11 +1,4 @@
-/**
- * K번째 수
- * 알고리즘 참고 https://st-lab.tistory.com/233
- * 
- * 처음엔 Quick Sort로 시도하였으나 시간 초과로 실패
- * Collections.sort로 하면 성공하는 코드 발견 후
- * 동일한 시간 복잡도를 가진 Merge Sort를 찾음 
- */
+// K번째 수
 
 import java.io.BufferedReader;
 import java.io.IOException;
@@ -13,76 +6,87 @@ import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
 public class s11004 {
-    static int N;
-    static int K;
-    static int[] arr;
-    static int[] sorted;
-
     public static void main(String[] args) throws IOException {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         StringTokenizer st = new StringTokenizer(br.readLine());
-        N = Integer.parseInt(st.nextToken());
-        K = Integer.parseInt(st.nextToken());
+        int N = Integer.parseInt(st.nextToken());
+        int K = Integer.parseInt(st.nextToken());
 
         st = new StringTokenizer(br.readLine());
-        arr = new int[N];
-        sorted = new int[N];
+        int[] A = new int[N];
         for(int i=0; i<N; i++) {
-            arr[i] = Integer.parseInt(st.nextToken());
+            A[i] = Integer.parseInt(st.nextToken());
         }
 
-        mergeSort(0, N-1);
+        quickSort(A, 0, N-1, K-1);
 
-        System.out.println(arr[K-1]);
+        System.out.println(A[K-1]);
     }
 
-    public static void mergeSort(int left, int right) {
-        if(left == right) return;
+    // 퀵 소트 알고리즘
+    public static void quickSort(int[] A, int S, int E, int K) {
+        if(S < E) {
+            int pivot = partition(A, S, E);
+            
+            // K번째 수가 pivot이면 더이상 구할 필요 없음
+            if(pivot == K) {
+                return;
 
-        int mid = (left + right) / 2;
+            // K가 pivot보다 작으면 왼쪽 그룹만 정렬
+            } else if(K< pivot) {
+                quickSort(A, S, pivot-1, K);
 
-        mergeSort(left, mid);
-        mergeSort(mid+1, right);
-
-        merge(left, mid, right);
-    }
-
-    private static void merge(int left, int mid, int right) {
-        int l = left;
-        int r = mid + 1;
-        int idx = left;
-
-        while(l <= mid && r <= right) {
-            if(arr[l] <= arr[r]) {
-                sorted[idx] = arr[l];
-                idx++;
-                l++;
-
+            // K가 pivot보다 크면 오른쪽 그룹만 정렬
             } else {
-                sorted[idx] = arr[r];
-                idx++;
-                r++;
+                quickSort(A, pivot+1, E, K);
+            }
+        }
+    }
+
+    private static int partition(int[] A, int S, int E) {
+        // 데이터가 2개인 경우 바로 비교하여 정렬
+        if(S+1 == E) {
+            if(A[S] > A[E]) {
+                swap(A, S, E);
+            }
+
+            return E;
+        }
+
+        // 중앙값
+        int M = (S+E) / 2;
+        // 중앙값을 시작 위치와 swap
+        swap(A, S, M);
+        int pivot = A[S];
+        int i = S+1, j = E;
+
+        while(i <= j) {
+            // 피벗보다 작은 수가 나올 때까지 --
+            while(pivot < A[j] && j > 0) {
+                j--;
+            }
+
+            // 피벗보다 큰 수가 나올 때까지 i++
+            while (pivot > A[i] && i < A.length-1) {
+                i++;
+            }
+
+            // 찾은 i와 j 데이터를 swap
+            if(i <= j) {
+                swap(A, i++, j--);
             }
         }
 
-        if(l > mid) {
-            while(r <= right) {
-                sorted[idx] = arr[r];
-                idx++;
-                r++;
-            }
+        // i == j 피벗의 값을 양쪽으로 분리한 가운데에 오도록 설정
+        A[S] = A[j];
+        A[j] = pivot;
+        return j;
+    }
 
-        } else {
-            while(l <= mid) {
-                sorted[idx] = arr[l];
-                idx++;
-                l++;
-            }
-        }
-
-        for(int i=left; i<=right; i++) {
-            arr[i] = sorted[i];
-        }
+    private static void swap(int[] A, int i, int j) {
+        int temp = A[i];
+        A[i] = A[j];
+        A[j] = temp;
     }
 
 }
